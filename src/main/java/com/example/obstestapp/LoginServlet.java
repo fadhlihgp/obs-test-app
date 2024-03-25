@@ -15,20 +15,18 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
+        request.setAttribute("error", "");
 
-        // Contoh hardcoded userID dan password
         String validUsername = "admin";
         String validPassword = "password";
 
         if (username.equals(validUsername) && password.equals(validPassword)) {
-            // Jika username dan password benar, redirect ke halaman welcome
             HttpSession session = request.getSession();
             session.setAttribute("username", username);
-            response.sendRedirect("welcome.jsp");
+            response.sendRedirect("/welcome");
         } else {
-            // Jika username atau password salah, kembali ke halaman login dengan pesan error
             request.setAttribute("error", "Invalid username or password");
-//            request.getRequestDispatcher("login.jsp").forward(request, response);
+            request.getRequestDispatcher("login.jsp").forward(request, response);
         }
     }
 }

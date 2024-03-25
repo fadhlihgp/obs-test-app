@@ -6,9 +6,20 @@ public class Department {
     private String name;
     private List<Student> students;
 
-    public Department(String name, List<Student> students) {
+    public double getPass() {
+        return pass;
+    }
+
+    public void setPass(double pass) {
+        this.pass = pass;
+    }
+
+    private double pass;
+
+    public Department(String name, List<Student> students, double pass) {
         this.name = name;
         this.students = students;
+        this.pass = pass;
     }
 
     public Department() {

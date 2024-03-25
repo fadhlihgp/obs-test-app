@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <!-- Include jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
@@ -27,7 +26,6 @@
 </body>
 <script type="text/javascript">
     $(document).ready(function() {
-        // Function to clear error message when input field is clicked
         $('#username').click(function() {
             $('#errorMessageUsername').empty();
             $('#errorMessagePassword').empty();
@@ -41,6 +39,11 @@
         $('#loginForm').submit(function(event) {
             // Prevent form submission
             event.preventDefault();
+
+            const errorMessage = '<%= request.getAttribute("error") %>';
+            if (errorMessage !== "") {
+                alert(errorMessage);
+            }
 
             // Clear previous error messages
             $('#errorMessageUsername').empty();
@@ -68,11 +71,7 @@
             // If all validations pass, submit the form
             this.submit();
         });
-    });
 
-    const errorMessage = '<%= request.getAttribute("error") %>';
-    if (errorMessage !== "") {
-        alert(errorMessage);
-    }
+    });
 </script>
 </html>
